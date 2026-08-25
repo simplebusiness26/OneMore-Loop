@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
@@ -29,16 +29,18 @@ const adaptive = `<?xml version="1.0" encoding="utf-8"?>
   <foreground android:drawable="@drawable/ic_launcher_foreground" />
 </adaptive-icon>
 `;
-const colors = `<?xml version="1.0" encoding="utf-8"?>
+const background = `<?xml version="1.0" encoding="utf-8"?>
 <resources><color name="ic_launcher_background">#050510</color></resources>
 `;
 
+// Capacitor creates ic_launcher_background.xml. Replace that value rather than
+// defining the same colour in a second values file, which Android rejects.
+await rm(resolve(androidRoot, 'res', 'values', 'colors.xml'), { force: true });
 await Promise.all([
   writeFile(resolve(androidRoot, 'res', 'drawable', 'ic_launcher_foreground.xml'), foreground),
   writeFile(resolve(androidRoot, 'res', 'mipmap-anydpi-v26', 'ic_launcher.xml'), adaptive),
   writeFile(resolve(androidRoot, 'res', 'mipmap-anydpi-v26', 'ic_launcher_round.xml'), adaptive),
-  writeFile(resolve(androidRoot, 'res', 'values', 'colors.xml'), colors)
+  writeFile(resolve(androidRoot, 'res', 'values', 'ic_launcher_background.xml'), background)
 ]);
 
 console.log('Applied ONE MORE LOOP Android icon and colour branding.');
-
