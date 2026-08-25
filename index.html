@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#050510">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <title>ONE MORE LOOP</title>
+  <meta name="description" content="A seven-second time-loop action puzzler. Every run becomes your next teammate.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="app" aria-label="ONE MORE LOOP">
+    <div class="ambient" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+    </div>
+
+    <section id="homeScreen" class="screen home-screen active" aria-labelledby="gameTitle">
+      <header class="home-topbar">
+        <span class="series-mark">ONE MORE / 06</span>
+        <button id="settingsButton" class="round-button" type="button" aria-label="Open settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Zm8.2 4.8v-2.6l-2.1-.7a6.5 6.5 0 0 0-.6-1.4l1-2-1.9-1.9-2 1a6.5 6.5 0 0 0-1.4-.6L12.6 3H10l-.7 2.1a6.5 6.5 0 0 0-1.4.6l-2-1L4 6.6l1 2a6.5 6.5 0 0 0-.6 1.4l-2.1.7v2.6l2.1.7a6.5 6.5 0 0 0 .6 1.4l-1 2L5.9 19l2-1a6.5 6.5 0 0 0 1.4.6l.7 2.1h2.6l.7-2.1a6.5 6.5 0 0 0 1.4-.6l2 1 1.9-1.9-1-2a6.5 6.5 0 0 0 .6-1.4l2-.4Z"/></svg>
+        </button>
+      </header>
+
+      <div class="hero-lockup">
+        <p class="kicker">EVERY RUN COMES BACK</p>
+        <h1 id="gameTitle">ONE MORE<br><span>LOOP</span></h1>
+        <div class="echo-mark" aria-hidden="true">
+          <span class="echo echo-4"></span>
+          <span class="echo echo-3"></span>
+          <span class="echo echo-2"></span>
+          <span class="echo echo-1"></span>
+          <span class="echo echo-live"></span>
+          <b></b>
+        </div>
+        <p class="tagline">Seven seconds. Build the perfect team from your past selves.</p>
+      </div>
+
+      <div class="home-actions">
+        <button id="continueButton" class="primary-button" type="button">
+          <span class="button-copy"><small id="continueLabel">BEGIN THE SIGNAL</small><strong>PLAY CAMPAIGN</strong></span>
+          <span class="button-arrow" aria-hidden="true">→</span>
+        </button>
+        <div class="mode-grid">
+          <button id="campaignButton" class="mode-button" type="button">
+            <span class="mode-icon campaign-icon" aria-hidden="true">24</span>
+            <span><strong>LEVELS</strong><small id="campaignProgress">0 / 72 STARS</small></span>
+          </button>
+          <button id="dailyButton" class="mode-button" type="button">
+            <span class="mode-icon daily-icon" aria-hidden="true">◎</span>
+            <span><strong>DAILY LOOP</strong><small id="dailyStatus">NEW SIGNAL</small></span>
+          </button>
+          <button id="rushButton" class="mode-button wide" type="button">
+            <span class="mode-icon rush-icon" aria-hidden="true">∞</span>
+            <span><strong>SYNC RUSH</strong><small id="rushBest">ENDLESS BEST: 0</small></span>
+            <span class="mode-chevron" aria-hidden="true">›</span>
+          </button>
+        </div>
+        <button id="howButton" class="text-button" type="button">HOW THE LOOP WORKS</button>
+      </div>
+      <footer class="home-footer"><span>ONE THUMB</span><i></i><span>NO ADS</span><i></i><span>OFFLINE</span></footer>
+    </section>
+
+    <section id="campaignScreen" class="screen campaign-screen" aria-labelledby="campaignTitle">
+      <header class="screen-header">
+        <button class="back-button" data-back="home" type="button" aria-label="Back to home">←</button>
+        <div><p class="kicker">THE SIGNAL</p><h2 id="campaignTitle">CAMPAIGN</h2></div>
+        <div id="starTotal" class="star-total" aria-label="Total stars">0 <span>◆</span></div>
+      </header>
+      <div class="campaign-summary">
+        <div class="summary-ring"><strong id="completionPercent">0%</strong><span>SYNCED</span></div>
+        <div><p>Build the chorus</p><strong id="nextLevelText">Level 01 awaits</strong><small>Every room teaches a new way to work with your echoes.</small></div>
+      </div>
+      <div id="levelList" class="level-list" aria-label="Campaign levels"></div>
+    </section>
+
+    <section id="helpScreen" class="screen help-screen" aria-labelledby="helpTitle">
+      <header class="screen-header">
+        <button class="back-button" data-back="home" type="button" aria-label="Back to home">←</button>
+        <div><p class="kicker">SEVEN SECONDS</p><h2 id="helpTitle">HOW TO LOOP</h2></div>
+        <span></span>
+      </header>
+      <div class="help-stack">
+        <article class="help-card"><b>01</b><div class="help-visual steer-visual" aria-hidden="true"><i></i><span>↗</span></div><div><h3>DRAG TO MOVE</h3><p>Touch anywhere in the arena and drag. The glowing runner follows your thumb.</p></div></article>
+        <article class="help-card"><b>02</b><div class="help-visual rewind-visual" aria-hidden="true"><i></i><i></i><span>↶</span></div><div><h3>TIME REWINDS</h3><p>After seven seconds your route is saved, and the room returns to the beginning.</p></div></article>
+        <article class="help-card"><b>03</b><div class="help-visual team-visual" aria-hidden="true"><i></i><i></i><i></i></div><div><h3>YOUR ECHO REPEATS</h3><p>Your previous runner performs the exact route again. Use it to hold pads and trigger signals.</p></div></article>
+        <article class="help-card accent"><b>04</b><div class="help-visual portal-visual" aria-hidden="true"><span></span></div><div><h3>COMPLETE THE MACHINE</h3><p>Coordinate every echo, activate the objective, then reach the portal with the live runner.</p></div></article>
+      </div>
+      <div class="fair-play-note"><strong>THE LOOP IS FAIR</strong><p>Hazard contact only restarts your current route. Undo removes your newest echo. Your good work is never erased unless you choose to reset the room.</p></div>
+      <button id="helpPlayButton" class="primary-button compact" type="button"><span class="button-copy"><small>READY?</small><strong>START LEVEL 01</strong></span><span class="button-arrow">→</span></button>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen" aria-label="Game arena">
+      <header class="game-hud">
+        <button id="gameBackButton" class="hud-button" type="button" aria-label="Pause game">Ⅱ</button>
+        <div class="level-identity"><small id="modeLabel">CAMPAIGN · 01</small><strong id="levelName">FIRST SIGNAL</strong></div>
+        <button id="soundButton" class="hud-button sound-button" type="button" aria-label="Toggle sound">♪</button>
+      </header>
+
+      <div class="loop-readout">
+        <div><small>LOOP</small><strong id="loopNumber">01</strong></div>
+        <div class="time-track" aria-label="Time remaining"><i id="timeFill"></i><span id="timeMarkers"></span></div>
+        <div class="time-value"><small>SECONDS</small><strong id="timeValue">7.00</strong></div>
+      </div>
+
+      <div id="arenaFrame" class="arena-frame">
+        <canvas id="gameCanvas" width="360" height="600" aria-label="Time-loop puzzle arena. Drag to move your runner."></canvas>
+        <div id="arenaMessage" class="arena-message" aria-live="polite"></div>
+        <div id="rewindFlash" class="rewind-flash" aria-hidden="true"><span>LOOP RECORDED</span><b>↶</b></div>
+        <div id="thumbHint" class="thumb-hint" aria-hidden="true"><i></i><span>DRAG TO STEER</span></div>
+      </div>
+
+      <div class="objective-strip">
+        <div id="echoPips" class="echo-pips" aria-label="Recorded echoes"></div>
+        <p id="objectiveText">Reach the signal, then enter the portal.</p>
+      </div>
+
+      <div class="game-controls">
+        <button id="undoButton" class="control-button" type="button" disabled><span>↶</span><small>UNDO ECHO</small></button>
+        <button id="retryLoopButton" class="control-button main-control" type="button"><span>↻</span><small>RETRY LOOP</small></button>
+        <button id="restartButton" class="control-button" type="button"><span>×</span><small>RESET ROOM</small></button>
+      </div>
+
+      <div id="briefingOverlay" class="game-overlay visible" role="dialog" aria-modal="true" aria-labelledby="briefingTitle">
+        <div class="overlay-card briefing-card">
+          <p id="briefingAct" class="kicker">ACT I · AWAKENING</p>
+          <h2 id="briefingTitle">FIRST SIGNAL</h2>
+          <p id="briefingHint">Touch the signal, then reach the portal before time rewinds.</p>
+          <div class="mission-stats"><span><small>TIME</small><strong id="briefingTime">7 SEC</strong></span><span><small>PERFECT</small><strong id="briefingPar">1 LOOP</strong></span></div>
+          <button id="startLevelButton" class="primary-button compact" type="button"><span class="button-copy"><small>LOOP 01</small><strong>BEGIN</strong></span><span class="button-arrow">→</span></button>
+        </div>
+      </div>
+
+      <div id="pauseOverlay" class="game-overlay" role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+        <div class="overlay-card">
+          <p class="kicker">TIME FROZEN</p><h2 id="pauseTitle">PAUSED</h2>
+          <button id="resumeButton" class="primary-button compact" type="button"><span class="button-copy"><small>KEEP THE PLAN</small><strong>RESUME</strong></span><span class="button-arrow">→</span></button>
+          <button id="pauseRestartButton" class="secondary-button" type="button">RESTART ROOM</button>
+          <button id="exitButton" class="text-button" type="button">EXIT TO MENU</button>
+        </div>
+      </div>
+
+      <div id="completeOverlay" class="game-overlay" role="dialog" aria-modal="true" aria-labelledby="completeTitle">
+        <div class="overlay-card complete-card">
+          <div id="resultSeal" class="result-seal"><span>SYNC</span><strong>◆</strong></div>
+          <p class="kicker">ROOM COMPLETE</p><h2 id="completeTitle">PERFECT CHORUS</h2>
+          <div id="resultStars" class="result-stars" aria-label="Stars earned"><i>◆</i><i>◆</i><i>◆</i></div>
+          <p id="resultLine">Completed in 1 loop.</p>
+          <div class="result-stats"><span><small>LOOPS</small><strong id="resultLoops">1</strong></span><span><small>BEST</small><strong id="resultBest">1</strong></span><span><small>TOTAL</small><strong id="resultTotal">3◆</strong></span></div>
+          <button id="nextButton" class="primary-button compact" type="button"><span class="button-copy"><small id="nextButtonLabel">NEXT SIGNAL</small><strong id="nextButtonText">LEVEL 02</strong></span><span class="button-arrow">→</span></button>
+          <button id="replayButton" class="secondary-button" type="button">REPLAY ROOM</button>
+        </div>
+      </div>
+
+      <div id="rushOverOverlay" class="game-overlay" role="dialog" aria-modal="true" aria-labelledby="rushOverTitle">
+        <div class="overlay-card complete-card">
+          <div class="result-seal rush-seal"><span>RUSH</span><strong>∞</strong></div>
+          <p class="kicker">SIGNAL LOST</p><h2 id="rushOverTitle">SYNC BROKEN</h2>
+          <p id="rushOverLine">You cleared 0 rooms.</p>
+          <div class="result-stats"><span><small>ROOMS</small><strong id="rushScore">0</strong></span><span><small>BEST</small><strong id="rushRecord">0</strong></span><span><small>COMBO</small><strong id="rushCombo">0</strong></span></div>
+          <button id="rushRetryButton" class="primary-button compact" type="button"><span class="button-copy"><small>FROM ROOM 01</small><strong>ONE MORE RUSH?</strong></span><span class="button-arrow">→</span></button>
+          <button id="rushExitButton" class="text-button" type="button">EXIT TO MENU</button>
+        </div>
+      </div>
+    </section>
+
+    <dialog id="settingsDialog" class="settings-dialog">
+      <form method="dialog">
+        <header><div><p class="kicker">MAKE IT YOURS</p><h2>SETTINGS</h2></div><button class="close-button" value="close" aria-label="Close settings">×</button></header>
+        <label class="setting-row"><span><strong>SOUND & MUSIC</strong><small>Procedural soundtrack and effects</small></span><input id="soundToggle" type="checkbox" checked><i></i></label>
+        <label class="setting-row"><span><strong>HAPTIC PULSES</strong><small>Touch feedback on Android</small></span><input id="hapticsToggle" type="checkbox" checked><i></i></label>
+        <label class="setting-row"><span><strong>REDUCED MOTION</strong><small>Minimise flashes and screen movement</small></span><input id="motionToggle" type="checkbox"><i></i></label>
+        <button id="resetProgressButton" class="danger-button" type="button">RESET CAMPAIGN PROGRESS</button>
+        <p class="version-line">ONE MORE LOOP · VERSION 1.0</p>
+      </form>
+    </dialog>
+
+    <div id="confirmReset" class="confirm-layer" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <div><h2 id="confirmTitle">RESET EVERYTHING?</h2><p>This removes campaign stars, daily records and Sync Rush scores from this device.</p><button id="confirmResetButton" class="danger-button" type="button">YES, RESET</button><button id="cancelResetButton" class="secondary-button" type="button">CANCEL</button></div>
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <div id="liveStatus" class="sr-only" aria-live="polite"></div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
+

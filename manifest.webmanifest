@@ -1,0 +1,21 @@
+{
+  "name": "ONE MORE LOOP",
+  "short_name": "ONE MORE LOOP",
+  "description": "Seven seconds. Every run becomes your next teammate.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#050510",
+  "theme_color": "#050510",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

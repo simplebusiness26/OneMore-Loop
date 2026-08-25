@@ -1,0 +1,28 @@
+{
+  "name": "one-more-loop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A seven-second time-loop action puzzler for Android and the web.",
+  "scripts": {
+    "dev": "npx serve . -l 4173 --no-clipboard",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs && node --test tests/*.test.js",
+    "test": "node --test tests/*.test.js",
+    "android:add": "npm run build && npx cap add android",
+    "android:sync": "npm run build && npx cap sync android",
+    "android:build": "npm run android:sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.0",
+    "@capacitor/core": "8.5.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.0",
+    "serve": "14.2.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
+

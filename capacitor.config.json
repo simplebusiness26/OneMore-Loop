@@ -1,0 +1,13 @@
+{
+  "appId": "com.simplebusiness.onemoreloop",
+  "appName": "ONE MORE LOOP",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#050510",
+    "allowMixedContent": false
+  }
+}
+
