@@ -1,0 +1,10 @@
+node_modules/
+dist/
+android/
+*.apk
+*.aab
+.DS_Store
+.idea/
+.vscode/
+npm-debug.log*
+
